@@ -1,6 +1,4 @@
-import React from "react";
-
-function SearchBar() {
+function SearchBar({ sortType, setSortType, filterType, setFilterType }) {
   return (
     <div>
       <strong>Sort by:</strong>
@@ -9,8 +7,8 @@ function SearchBar() {
           type="radio"
           value="Alphabetically"
           name="sort"
-          checked={null}
-          onChange={null}
+          checked={sortType === "Alphabetically"}
+          onChange={(e) => setSortType(e.target.value)}
         />
         Alphabetically
       </label>
@@ -19,22 +17,26 @@ function SearchBar() {
           type="radio"
           value="Price"
           name="sort"
-          checked={null}
-          onChange={null}
+          checked={sortType === "Price"}
+          onChange={(e) => setSortType(e.target.value)}
         />
         Price
       </label>
       <br />
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value)}
+        >
+          <option value="">All</option>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
         </select>
       </label>
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar
